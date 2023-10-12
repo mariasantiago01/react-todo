@@ -9,7 +9,7 @@ function App() {
       
       <AddTodoForm />
       
-      < TodoList />
+      <TodoList />
     </div>
   );
 }
