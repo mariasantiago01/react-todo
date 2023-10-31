@@ -26,7 +26,7 @@ const App = () =>{
   
   const [newTodo, setNewTodo] = React.useState('');
 
-  const [todoList, setTodoList] = React.useState({});
+  const [todoList, setTodoList] = React.useState([]);
 
 
 
