@@ -26,13 +26,13 @@ const App = () =>{
   }
 
   return (
-    <div>
+    <>
       <h1>Todo List</h1>
       
       <AddTodoForm onAddTodo={addTodo}/>
 
       <TodoList todoList={todoList}/>
-    </div>
+    </>
   );
 }
 
