@@ -1,12 +1,11 @@
 import React from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
-import todoTitle from './AddTodoForm'
 
 // This is the main app component. The root component.
 const App = () =>{
   const [todoList, setTodoList] = React.useState([]);
-  
+
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   }
