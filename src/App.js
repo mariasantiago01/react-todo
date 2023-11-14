@@ -16,7 +16,6 @@ const useSemiPersistentState = () => {
   return [todoList, setTodoList];
 }
 
-
 // This is the main app component. The root component.
 const App = () =>{
   const [todoList, setTodoList] = useSemiPersistentState();
@@ -25,13 +24,18 @@ const App = () =>{
     setTodoList([...todoList, newTodo]);
   }
 
+  const removeTodo = (id) => {
+    const newTodoList = todoList.filter((item) => item.id !== id);
+    setTodoList(newTodoList);
+  }
+
   return (
     <>
       <h1>Todo List</h1>
       
       <AddTodoForm onAddTodo={addTodo}/>
 
-      <TodoList todoList={todoList}/>
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo}/>
     </>
   );
 }

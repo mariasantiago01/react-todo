@@ -20,7 +20,7 @@ const AddTodoForm  = ({onAddTodo}) => {
     };
 
     return (
-        <div>
+        <>
             <form onSubmit={handleAddTodo}>
                 <InputWithLabel
                 id='todoTitle'
@@ -30,7 +30,7 @@ const AddTodoForm  = ({onAddTodo}) => {
                 >Title:</InputWithLabel>
                 <button type='submit'>Add</button>
             </form>
-        </div>
+        </>
     );
 }
 
