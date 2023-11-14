@@ -1,10 +1,10 @@
 import React from 'react';
 
-const InputWithLabel = ({id, label, type='text', name, value, onChange}) => {
+const InputWithLabel = ({id, children, type='text', name, value, onChange}) => {
 
     return (
         <>
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={id}>{children}</label>
             <input 
             id={id}
             type={type}
