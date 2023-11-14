@@ -1,6 +1,11 @@
 import React from 'react';
 
 const InputWithLabel = ({id, children, type='text', name, value, onChange}) => {
+    const inputRef = React.useRef();
+
+    React.useEffect(() => {
+        inputRef.current.focus();
+    })
 
     return (
         <>
@@ -11,6 +16,7 @@ const InputWithLabel = ({id, children, type='text', name, value, onChange}) => {
             name={name}
             value={value}
             onChange={onChange}
+            ref={inputRef}
             ></input>
         </>
     );
