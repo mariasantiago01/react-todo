@@ -5,7 +5,8 @@ import AddTodoForm from './AddTodoForm';
 
 // This is the main app component. The root component.
 const App = () =>{
-  const [todoList, setTodoList] = React.useState([]);
+  const [todoList, setTodoList] = React.useState([]); 
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     new Promise((resolve, reject) => 
@@ -13,12 +14,17 @@ const App = () =>{
         () => resolve({ data: { todoList: JSON.parse(localStorage.getItem('savedTodoList'))}}),
         2000
       )
-    ).then((result) => setTodoList(result.data.todoList))
+    ).then((result) => {
+      setTodoList(result.data.todoList);
+      setIsLoading(false);
+    })
   },[]);
 
   React.useEffect(() => {
     let stringifiedTodoList = JSON.stringify(todoList);
-    localStorage.setItem('savedTodoList', stringifiedTodoList);
+    if (isLoading === false) {
+      localStorage.setItem('savedTodoList', stringifiedTodoList);
+    }
   }, [todoList]);
 
   const addTodo = (newTodo) => {
