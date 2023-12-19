@@ -65,7 +65,7 @@ const App = () => {
       const response = await fetch(url, options);
 
       if (response.ok) {
-        console.log("we're in boysss")
+        console.log("The todo has been sucessfully posted.")
       } else if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       };
