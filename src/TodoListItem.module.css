@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+body{ 
+    font-family: 'Philosopher', serif;
+    font-size: large;
+}
+
+.ListItem {
+    color:#000000;
+    padding: 0.5rem;
+    list-style: none;
+    border-radius: 0.5rem;
+    background-color: #F4BF96;
+    display:inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row; 
+    justify-content: space-between;
+    margin: 1rem;
+    padding: 1.5rem;
+    align-items: center;
+    gap:1rem;
+}
+
+.Button {
+    color: #000000;
+    background-color: #CE5A67;
+    border-radius: 0.3rem;
+    border: solid #CE5A67 0.2rem;
+    padding: 0.4rem 0.8rem;
+    font-family: 'Philosopher', serif;
+}
+
+@media (max-width: 700px) {
+    .ListItem {
+        display: flex;
+    }
+}

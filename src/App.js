@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import style from './App.module.css';
 
 // This is the main app component. The root component.
 const App = () => {
@@ -103,12 +104,12 @@ const App = () => {
       <Routes>
         <Route path="/" element= {
           <>
-            <h1>Todo List</h1>
+            <h1 className={style.TodoTitle}>Todo List</h1>
             
             <AddTodoForm onAddTodo={addTodo}/>
 
             {isLoading ? (
-              <p>Loading...</p>
+              <p style={{fontFamily:"Philosopher", color:"#F4BF96", marginLeft:"1rem"}}>Loading...</p>
             ) : (
               <TodoList todoList={todoList} onRemoveTodo={removeTodo}/>
             )}
