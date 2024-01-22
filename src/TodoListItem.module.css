@@ -6,11 +6,11 @@ body{
 }
 
 .ListItem {
-    color:#000000;
+    color:#360827;
     padding: 0.5rem;
     list-style: none;
     border-radius: 0.5rem;
-    background-color: #F4BF96;
+    background-color: #fbf8ca;
     display:inline-flex;
     flex-wrap: nowrap;
     flex-direction: row; 
@@ -21,11 +21,11 @@ body{
     gap:1rem;
 }
 
-.Button {
-    color: #000000;
-    background-color: #CE5A67;
+.RemoveButton {
+    color: #FCF5ED;
+    background-color: #a13f80;
     border-radius: 0.3rem;
-    border: solid #CE5A67 0.2rem;
+    border: solid #a13f80 0.2rem;
     padding: 0.4rem 0.8rem;
     font-family: 'Philosopher', serif;
 }
