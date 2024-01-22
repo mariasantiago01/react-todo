@@ -1,0 +1,10 @@
+
+.InputStyling {
+    background-color:#FCF5ED;
+    border:solid #FCF5ED 0.2rem;
+    border-radius:0.3rem;
+    padding: 0.5rem;
+    font-size: medium;
+    width: 100%;
+    color:#1F1717;
+}
