@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './InputWithLabel.module.css'
+import PropTypes from 'prop-types';
 
 const InputWithLabel = ({id, children, type='text', name, value, onChange}) => {
     const inputRef = React.useRef();
@@ -23,6 +24,15 @@ const InputWithLabel = ({id, children, type='text', name, value, onChange}) => {
             ></input>
         </>
     );
+};
+
+InputWithLabel.propTypes = {
+    id: PropTypes.string,
+    children:PropTypes.node,
+    type:PropTypes.elementType,
+    name:PropTypes.string,
+    value:PropTypes.string,
+    onChange: PropTypes.func,
 };
 
 export default InputWithLabel;
