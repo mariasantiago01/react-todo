@@ -26,7 +26,18 @@ const TodoContainer = ({tableName}) => {
           };
     
           const data = await response.json();
-    
+
+
+          data.records.sort((itemA, itemB) => {
+            if (itemA.fields.title < itemB.fields.title) {
+                return -1;
+            } else if (itemA.fields.title > itemB.fields.title) {
+                return 1;
+            } else {
+                return 0;
+            }
+          });
+
           const todos = data.records.map((todo) => { 
             const newTodo = {
               id: todo.id,
@@ -34,6 +45,8 @@ const TodoContainer = ({tableName}) => {
             };
             return newTodo;
           });
+
+
     
           setTodoList(todos);
           setIsLoading(false);
