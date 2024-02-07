@@ -8,7 +8,6 @@ const TodoContainer = ({tableName}) => {
     const [isLoading, setIsLoading] = React.useState(true);
 
     const fetchData = async () => {
-
         const options = {
           method: 'GET',
           headers: {
@@ -46,8 +45,6 @@ const TodoContainer = ({tableName}) => {
             return newTodo;
           });
 
-
-    
           setTodoList(todos);
           setIsLoading(false);
     
@@ -57,13 +54,6 @@ const TodoContainer = ({tableName}) => {
     };
 
     React.useEffect(() => {fetchData();},[]);
-
-    // React.useEffect(() => {
-    //     let stringifiedTodoList = JSON.stringify(todoList);
-    //     if (isLoading === false) {
-    //         localStorage.setItem('savedTodoList', stringifiedTodoList);
-    //     }
-    // }, [todoList]);
 
     const postTodo = async (todo) => {
         try{
@@ -180,25 +170,13 @@ const TodoContainer = ({tableName}) => {
         postTodo(newTodo);
     }
 
-    // Thinking about removing this removeTodo function as well, and just passing deleteTodo(id) to the 
-    // onRemoveTodo={} handler instead, as the app is working fine without the last two lines of code
     const removeTodo = (id) => {
         deleteTodo(id);
-    // const newTodoList = todoList.filter((item) => item.id !== id);
-    // setTodoList(newTodoList);
     }
 
     //Under construction. The patchTodo() function works successfully. 
     const editTodo = (newTodoTitle) => {
         patchTodo(newTodoTitle);
-        // const newTodoList = todoList.map((item) => {
-        //   if (id === item.id) {
-        //     return {...TodoList, title: newTodoTitle};
-        //   } 
-        //   return todoList;
-        // })
-
-        // setTodoList(newTodoList); 
     };
 
     return (
@@ -212,7 +190,6 @@ const TodoContainer = ({tableName}) => {
         )}
         </>
       );
-
 }
 
 TodoContainer.propTypes = {
