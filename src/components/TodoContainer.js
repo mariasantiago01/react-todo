@@ -26,7 +26,6 @@ const TodoContainer = ({tableName}) => {
     
           const data = await response.json();
 
-
           data.records.sort((itemA, itemB) => {
             if (itemA.fields.title < itemB.fields.title) {
                 return -1;
@@ -55,7 +54,7 @@ const TodoContainer = ({tableName}) => {
 
     React.useEffect(() => {fetchData();},[]);
 
-    const postTodo = async (todo) => {
+    const addTodo = async (todo) => {
         try{
           const dataToAirtable = {
             fields: {
@@ -95,7 +94,7 @@ const TodoContainer = ({tableName}) => {
         }
     };
     
-    const deleteTodo = async (id) => {
+    const removeTodo = async (id) => {
         try {
           const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
           const options = {
@@ -125,7 +124,7 @@ const TodoContainer = ({tableName}) => {
         }
     };
     
-    const patchTodo = async (todo) => {
+    const editTodo = async (todo) => {
         try {
           const id = todo.id;
           const dataToAirtable = {
@@ -163,20 +162,6 @@ const TodoContainer = ({tableName}) => {
           console.log(error.message);
           return null;
         }
-    };
-    
-    const addTodo = (newTodo) => {
-        setTodoList([...todoList, newTodo]);
-        postTodo(newTodo);
-    }
-
-    const removeTodo = (id) => {
-        deleteTodo(id);
-    }
-
-    //Under construction. The patchTodo() function works successfully. 
-    const editTodo = (newTodoTitle) => {
-        patchTodo(newTodoTitle);
     };
 
     return (

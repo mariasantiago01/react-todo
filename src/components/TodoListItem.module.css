@@ -21,7 +21,7 @@ body{
     gap:1rem;
 }
 
-.RemoveButton {
+.Button {
     color: #FCF5ED;
     background-color: #a13f80;
     border-radius: 0.3rem;
