@@ -21,6 +21,16 @@ body{
     gap:1rem;
 }
 
+.InputStyling {
+    background-color:#FCF5ED;
+    border:solid #a13f80 0.15rem;
+    border-radius:0.3rem;
+    padding: 0.5rem;
+    font-size: medium;
+    width: 100%;
+    color:#1F1717;
+}
+
 .Button {
     color: #FCF5ED;
     background-color: #a13f80;
