@@ -8,10 +8,8 @@ const TodoContainer = ({tableName}) => {
     const [todoList, setTodoList] = React.useState([]); 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const baseURL = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`
-
-    const fetchData = async () => {
-        const url = baseURL;
+    const fetchData = async (tableName) => {
+        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`;
         const options = {
           method: 'GET',
           headers: {
@@ -19,6 +17,7 @@ const TodoContainer = ({tableName}) => {
             'Content-Type': 'application/json'
           }
         };
+
         try {
           const response = await fetch(url, options);
     
@@ -54,7 +53,9 @@ const TodoContainer = ({tableName}) => {
         }
     };
 
-    React.useEffect(() => {fetchData();},[tableName]);
+    React.useEffect(() => {fetchData(tableName);},[tableName]);
+
+    const baseURL = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`
 
     const addTodo = async (todo) => {
         try{
@@ -63,8 +64,7 @@ const TodoContainer = ({tableName}) => {
               title: todo.title,
             },
           };
-          console.log(dataToAirtable);
-          const url = baseURL;
+          const url = `${baseURL}`;
           const options = {
             method: 'POST',
             headers: {
@@ -87,8 +87,7 @@ const TodoContainer = ({tableName}) => {
     
           setTodoList([...todoList, dataResponse.fields]);
     
-          //calling on fetchData() to prevent app from crashing when immediately deleting a task that was added.
-          fetchData();
+          fetchData(tableName);
           
         } catch (error) {
           console.log(error.message);
@@ -118,7 +117,7 @@ const TodoContainer = ({tableName}) => {
           const dataResponse = await response.json();
           console.log(dataResponse);
     
-          fetchData();
+          fetchData(tableName);
           
         } catch (error) {
           console.log(error.message);
@@ -158,7 +157,7 @@ const TodoContainer = ({tableName}) => {
           console.log(dataResponse);
           setTodoList([...todoList, dataResponse.fields]);
     
-          fetchData();
+          fetchData(tableName);
     
         } catch (error) {
           console.log(error.message);

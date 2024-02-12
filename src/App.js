@@ -6,7 +6,12 @@ import { FaTasks, FaHome } from "react-icons/fa";
 
 const App = () => {
   const [tableName, setTableName] = React.useState(
-    localStorage.getItem('tableName') || process.env.REACT_APP_TABLE_ONE_NAME);
+    localStorage.getItem('tableName') || process.env.REACT_APP_TABLE_ONE_NAME
+  );
+
+  // React.useEffect(() => {
+  //   localStorage.setItem('tableName', tableName);
+  // }, [tableName]);
 
   const handleChooseTasks = () => {
     setTableName(process.env.REACT_APP_TABLE_ONE_NAME);
