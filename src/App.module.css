@@ -3,9 +3,23 @@
 body {
     background-color: #360827;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-available;
+}
+div {
+    width: -webkit-fill-available;
 }
 
-/* Navigation Section */
+.MenuItems {
+    display: flex;
+    flex-direction: column;
+    color: #a13f80;
+    margin: 6rem 1.2rem 0.5rem 1.2rem;
+    gap: 0.5rem;
+}
+
+/* My Tasks Navigation Section */
 .Nav {
     display: flex;
     flex-direction: row;
@@ -14,43 +28,45 @@ body {
     justify-content: space-between;
     padding: 0 1.25rem;
     background-color: #5e1043;
+    position:fixed;
+    width: -webkit-fill-available;
 }
+
 .TodoTitle {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     color:#fbf8ca;
-    /* padding: 1.25rem;
-    background-color: #5e1043;
-    /* width: 100%; */
-    /* margin: -0.5rem 0 1.5rem 0; */
 }
 
 .TodoLogo {
     justify-items: center;
     height: 23px;
 }
+
 button {
-    color: #fbf8ca;
+    color: #FCF5ED;
     background-color: #5e1043;
-    border: #fbf8ca solid 0.2rem;
+    border: #FCF5ED solid 0.2rem;
     border-radius: 0.3rem;
-    padding: 0.2rem 0.3rem;
+    padding: 0.2rem 0.3rem 0 0.3rem;
 }
 
 .HomeLogo {
-    color: #fbf8ca;
+    color: #FCF5ED;
     background-color: #5e1043;
     justify-items: center;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
+
 button:hover {
     border: #a13f80 solid 0.2rem;
 }
+
 .HomeLogo:hover {
     color: #a13f80;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
 }
 
 /* Path */
@@ -58,11 +74,16 @@ button:hover {
     display: flex;
     flex-direction: row;
     color: #a13f80;
-    margin: 1.2rem;
+    margin: 6rem 1.2rem 0.5rem 1.2rem;
     gap: 0.5rem;
 }
+
+.Link { 
+    color:#FCF5ED;
+}
+
 .Link:visited { 
-    color:#fbf8ca;
+    color:#FCF5ED;
 }
 
 .Link:hover { 

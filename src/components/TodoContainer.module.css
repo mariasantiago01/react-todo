@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+.TableName {
+    display: flex;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color:#5e1043;
+    margin: 1rem 1rem 0rem 0.5rem;
+    padding: 1.5rem;
+    height: 2rem;
+    align-items: center;
+    width: -webkit-fill-available;
+}
+
+.TitleFormDiv {
+   background-color:#fbf8ca; 
+   border-radius: 0.3rem;
+   margin: 0 1rem;
+   position: sticky;
+   top: 6rem;
+   width: -webkit-fill-available;
+}

@@ -2,12 +2,16 @@ import React from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 import PropTypes from "prop-types";
+import style from './TodoContainer.module.css';
 
 const TodoContainer = ({tableName}) => {
     const [todoList, setTodoList] = React.useState([]); 
     const [isLoading, setIsLoading] = React.useState(true);
 
+    const baseURL = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`
+
     const fetchData = async () => {
+        const url = baseURL;
         const options = {
           method: 'GET',
           headers: {
@@ -15,8 +19,6 @@ const TodoContainer = ({tableName}) => {
             'Content-Type': 'application/json'
           }
         };
-        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
-    
         try {
           const response = await fetch(url, options);
     
@@ -52,7 +54,7 @@ const TodoContainer = ({tableName}) => {
         }
     };
 
-    React.useEffect(() => {fetchData();},[]);
+    React.useEffect(() => {fetchData();},[tableName]);
 
     const addTodo = async (todo) => {
         try{
@@ -62,7 +64,7 @@ const TodoContainer = ({tableName}) => {
             },
           };
           console.log(dataToAirtable);
-          const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+          const url = baseURL;
           const options = {
             method: 'POST',
             headers: {
@@ -96,7 +98,7 @@ const TodoContainer = ({tableName}) => {
     
     const removeTodo = async (id) => {
         try {
-          const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+          const url = `${baseURL}/${id}`;
           const options = {
             method: 'DELETE',
             headers: {
@@ -129,11 +131,11 @@ const TodoContainer = ({tableName}) => {
           const id = todo.id;
           const dataToAirtable = {
             fields: {
-              title: todo.title //to be updated
+              title: todo.title
             }
           }
           console.log(dataToAirtable);
-          const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+          const url = `${baseURL}/${id}`;
           const options = {
             method: 'PATCH',
             headers: {
@@ -166,7 +168,10 @@ const TodoContainer = ({tableName}) => {
 
     return (
         <>
-        <AddTodoForm onAddTodo={addTodo}/>
+        <div className={style.TitleFormDiv}>
+          <h1 className={style.TableName}> {tableName}</h1>
+          <AddTodoForm onAddTodo={addTodo}/>
+        </div>
 
         {isLoading ? (
             <p style={{fontFamily:"Philosopher", color:"#fbf8ca", marginLeft:"1rem"}}>Loading...</p>
@@ -178,7 +183,7 @@ const TodoContainer = ({tableName}) => {
 }
 
 TodoContainer.propTypes = {
-    tableName: PropTypes.any,
+    tableName: PropTypes.string,
 }
 
 export default TodoContainer;
