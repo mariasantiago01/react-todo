@@ -37,6 +37,7 @@ const TodoListItem = ({item, onRemoveTodo, onUpdateTodo}) => {
                 <form className={style.EditingForm} id='editForm'>
                     <input 
                     className={style.InputStyling}  
+                    id='editingInput'
                     type='text' 
                     value={changedTodo} 
                     onChange={handleTitleChange}
@@ -47,9 +48,9 @@ const TodoListItem = ({item, onRemoveTodo, onUpdateTodo}) => {
                 </form>
             </li>
         ) : (
-            <li className={style.ListItem} key={item.id}>
+            <li className={style.ListItem}>
                 {item.title}
-                <button className={style.Button} type='button' onClick={handleEditTodo}><HiPencilAlt className={style.EditButtonLogo}/></button>
+                <button className={style.Button} type='button' onClick={handleEditTodo}><HiPencilAlt className={style.ButtonLogo}/></button>
                 <button className={style.Button} type='button' onClick={() => onRemoveTodo(item.id)}><HiTrash className={style.ButtonLogo}/></button>
             </li> 
         )}

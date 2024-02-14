@@ -6,9 +6,9 @@ const TodoList = ({todoList, onRemoveTodo, onUpdateTodo}) => {
   return (
     <>
       <ul style={{padding:"0 1rem"}}> 
-        {todoList.map((item) => (
+        {todoList.map((item, index) => (
             <TodoListItem 
-            key={item.id} 
+            key={index} 
             item={item} 
             onRemoveTodo={onRemoveTodo}
             onUpdateTodo={onUpdateTodo}/>
