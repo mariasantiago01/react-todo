@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 const TodoList = ({todoList, onRemoveTodo, onUpdateTodo}) => {
   return (
     <>
-      <ul style={{padding:"0 1rem"}}> 
+      <ul style={{padding:"0 1rem", marginTop:'0'}}> 
         {todoList.map((item) => (
             <TodoListItem 
-            key={item.id} 
+            key={item.id + 1} //item.id was still giving me a "children need a key prop" warning, so I just added a + 1.
             item={item} 
             onRemoveTodo={onRemoveTodo}
             onUpdateTodo={onUpdateTodo}/>
