@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&family=Playfair+Display:ital,wght@1,700&display=swap');
 
+
+/* Table Title and Form Section */
+.TitleFormDiv {
+   background-color:#fbf8ca; 
+   border-radius: 0.3rem;
+   margin: 0 1rem;
+   position: sticky;
+   top: 6rem;
+   width: -webkit-fill-available;
+}
 .TableName {
     display: flex;
     font-family: 'Playfair Display', serif;
@@ -13,11 +23,22 @@
     width: -webkit-fill-available;
 }
 
-.TitleFormDiv {
-   background-color:#fbf8ca; 
-   border-radius: 0.3rem;
-   margin: 0 1rem;
-   position: sticky;
-   top: 6rem;
-   width: -webkit-fill-available;
+/* Sorting Option */
+.SortDiv {
+    display: inline-flex;
+    width: -webkit-fill-available;
+    height: fit-content;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin: 1rem 1.5rem 0 1.5rem;
+}
+.SortTitle {
+    color: #fbf8ca;
+}
+
+.Sort {
+    background-color: #a13f80;
+    color: #fbf8ca;
+    border: #a13f80 solid 0.1rem;
+    border-radius: 0.2rem;
 }

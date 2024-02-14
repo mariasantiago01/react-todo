@@ -8,7 +8,21 @@ const TodoContainer = ({tableName}) => {
     const [todoList, setTodoList] = React.useState([]); 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const fetchData = async (tableName) => {
+    const [sortTable, setSortTable] = React.useState(
+      localStorage.getItem('sortTable') ||'AZ'
+    );
+    
+    React.useEffect(() => {
+      localStorage.setItem('sortTable', sortTable);
+    }, [sortTable]);
+
+    const handleSortTable = (event) => {
+      let value = event.target.value;
+        setSortTable(value);
+        fetchData();
+    }
+
+    const fetchData = async (tableName, sortTable) => {
         const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`;
         const options = {
           method: 'GET',
@@ -27,15 +41,29 @@ const TodoContainer = ({tableName}) => {
     
           const data = await response.json();
 
-          data.records.sort((itemA, itemB) => {
-            if (itemA.fields.title < itemB.fields.title) {
-                return -1;
-            } else if (itemA.fields.title > itemB.fields.title) {
-                return 1;
-            } else {
-                return 0;
-            }
-          });
+          if (sortTable === 'AZ') {
+
+            data.records.sort((itemA, itemB) => {
+              if (itemA.fields.title < itemB.fields.title) {
+                  return -1;
+              } else if (itemA.fields.title > itemB.fields.title) {
+                  return 1;
+              } else {
+                  return 0;
+              }
+            });
+
+          } else if (sortTable === 'ZA') {
+            data.records.sort((itemA, itemB) => {
+              if (itemA.fields.title < itemB.fields.title) {
+                  return 1;
+              } else if (itemA.fields.title > itemB.fields.title) {
+                  return -1;
+              } else {
+                  return 0;
+              }
+            });
+          };
 
           const todos = data.records.map((todo) => { 
             const newTodo = {
@@ -53,7 +81,7 @@ const TodoContainer = ({tableName}) => {
         }
     };
 
-    React.useEffect(() => {fetchData(tableName);},[tableName]);
+    React.useEffect(() => {fetchData(tableName, sortTable);},[tableName,sortTable]);
 
     const baseURL = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`
 
@@ -83,11 +111,10 @@ const TodoContainer = ({tableName}) => {
           };
     
           const dataResponse = await response.json();
-          console.log(dataResponse);
     
           setTodoList([...todoList, dataResponse.fields]);
     
-          fetchData(tableName);
+          fetchData(tableName, sortTable);
           
         } catch (error) {
           console.log(error.message);
@@ -117,7 +144,7 @@ const TodoContainer = ({tableName}) => {
           const dataResponse = await response.json();
           console.log(dataResponse);
     
-          fetchData(tableName);
+          fetchData(tableName, sortTable);
           
         } catch (error) {
           console.log(error.message);
@@ -157,7 +184,7 @@ const TodoContainer = ({tableName}) => {
           console.log(dataResponse);
           setTodoList([...todoList, dataResponse.fields]);
     
-          fetchData(tableName);
+          fetchData(tableName, sortTable);
     
         } catch (error) {
           console.log(error.message);
@@ -172,8 +199,16 @@ const TodoContainer = ({tableName}) => {
           <AddTodoForm onAddTodo={addTodo}/>
         </div>
 
+        <div className={style.SortDiv}>
+          <span className={style.SortTitle}>Sort:</span>
+          <select className={style.Sort} onChange={handleSortTable} id='sortTable'>
+            <option value='AZ'>A-Z</option>
+            <option value='ZA'>Z-A</option>
+          </select>
+        </div>
+
         {isLoading ? (
-            <p style={{fontFamily:"Philosopher", color:"#fbf8ca", marginLeft:"1rem"}}>Loading...</p>
+            <p style={{fontFamily:"Philosopher", color:"#fbf8ca", marginLeft:"1.5rem"}}>Loading...</p>
         ) : (
             <TodoList todoList={todoList} onRemoveTodo={removeTodo} onUpdateTodo={editTodo}/>
         )}
