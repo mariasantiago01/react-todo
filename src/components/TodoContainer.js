@@ -9,8 +9,7 @@ const TodoContainer = ({tableName}) => {
     const [isLoading, setIsLoading] = React.useState(true);
 
     const [sortTable, setSortTable] = React.useState(
-      localStorage.getItem('sortTable') ||'AZ'
-    );
+      localStorage.getItem('sortTable') || 'AZ');
     
     React.useEffect(() => {
       localStorage.setItem('sortTable', sortTable);
@@ -19,7 +18,7 @@ const TodoContainer = ({tableName}) => {
     const handleSortTable = (event) => {
       let value = event.target.value;
         setSortTable(value);
-        fetchData();
+        fetchData(tableName);
     }
 
     const fetchData = async (tableName, sortTable) => {
