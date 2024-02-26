@@ -42,11 +42,11 @@ body{
     width: 19px;
     height: 19px;
 }
-.ButtonLogo:hover {
+.Button:hover .ButtonLogo{
     color: #fbf8ca;
 }
 
-.EditButtonLogo:hover {
+.Button:hover .EditButtonLogo{
     color: #fbf8ca;
 }
 
